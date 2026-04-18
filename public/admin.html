@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<h1>Admin Panel</h1>
+<div id="stats">
+  <p>Total: <span id="total">0</span></p>
+  <p>Pending: <span id="pending">0</span></p>
+  <p>Done: <span id="done">0</span></p>
+</div>
+<button onclick="window.location.href='/logout'">Logout</button>
+
+<br><br>
+<input type="text" id="search" placeholder="Search by name or phone..." onkeyup="filterData()">
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Problem</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody id="list">
+    <!-- Data yahan JS se ayega -->
+  </tbody>
+</table>
+<div id="editModal" style="display:none;">
+  <h3>Edit Request</h3>
+  <input id="editName" placeholder="Name"><br><br>
+  <input id="editPhone" placeholder="Phone"><br><br>
+  <input id="editproblem" placeholder="Problem"><br><br>
+  <button onclick="saveEdit()">Save</button>
+</div>
+<script src="admin.js"></script>
+</body>
+</html>

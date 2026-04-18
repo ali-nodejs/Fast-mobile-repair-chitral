@@ -1,0 +1,123 @@
+/* Page */
+body {
+  font-family: Arial;
+  background: #f4f4f4;
+  padding: 20px;
+}
+
+/* Heading */
+h1 {
+  color: #333;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+/* Header */
+th {
+  background: black;
+  color: white;
+  padding: 10px;
+}
+
+/* Rows */
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Hover row */
+tr:hover {
+  background: #f1f1f1;
+}
+
+/* Status colors */
+.pending {
+  color: orange;
+  font-weight: bold;
+}
+
+.done {
+  color: green;
+  font-weight: bold;
+}
+
+/* Buttons */
+button {
+  margin-right: 5px;
+}
+
+/* Toggle */
+.toggle-btn {
+  background: blue;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-btn:hover {
+  background: darkblue;
+}
+
+/* Delete */
+.delete-btn {
+  background: red;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: darkred;
+}
+.edit-btn {
+  background: green;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: darkgreen;
+}
+td button {
+  margin-right: 5px;
+}
+table {
+  display: block;
+  overflow-x: auto;
+}
+/* Modal background */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+/* Modal box */
+.modal-content {
+  background: white;
+  padding: 20px;
+  margin: 15% auto;
+  width: 300px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+/* Inputs */
+.modal input {
+  width: 90%;
+  padding: 8px;
+  margin: 5px 0;
+}
