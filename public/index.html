@@ -1,25 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Mobile Repair</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 👈 Sabse zaroori -->
+  <title>Fast Mobile Repair Chitral - Screen, Battery, Software Fix</title>
+  <meta name="description" content="Chitral me 1 ghante me mobile repair. Screen, battery, charging issue fix. WhatsApp pe free quote len.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Mobile Repair Service</h1>
+<!-- Header -->
+<header>
+  <h1>⚡ Fast Mobile Repair Chitral</h1>
+  <p>Screen Crack? Battery Dead? 1 Hour Service</p>
+  <button onclick="scrollToForm()" class="cta-btn">Free Quote Len</button>
+  <button onclick="openWhatsApp()" class="whatsapp-btn">WhatsApp Karein</button>
+</header>
 
-<form id="repair-form">
-  <input type="text" id="name" placeholder="Your Name" required><br>
-  <input type="text" id="phone" placeholder="Phone Number" required><br>
-  <input type="text" id="problem" placeholder="Problem" required><br>
-  <button type="submit">Submit</button>
-</form>
+<!-- Services Section - Fiverr client ye dekhta hai -->
+<section id="services">
+  <h2>Hamari Services</h2>
+  <div class="service-grid">
+    <div class="card">
+      <h3>📱 Screen Replacement</h3>
+      <p>Original quality screen. 30 min me lag jayegi</p>
+      <strong>From Rs. 2000</strong>
+    </div>
+    <div class="card">
+      <h3>🔋 Battery Change</h3>
+      <p>100% health wali battery. 6 month warranty</p>
+      <strong>From Rs. 1500</strong>
+    </div>
+    <div class="card">
+      <h3>🔌 Charging Fix</h3>
+      <p>Charging port/Motherboard repair</p>
+      <strong>From Rs. 800</strong>
+    </div>
+  </div>
+</section>
 
-<br>
+<!-- Why Choose Us -->
+<section id="why-us">
+  <h2>Humein Kyun Chunein?</h2>
+  <ul>
+    <li>✅ 1 Hour Express Service</li>
+    <li>✅ 6 Month Warranty</li>
+    <li>✅ Free Pickup & Drop Chitral me</li>
+    <li>✅ 500+ Happy Customers</li>
+  </ul>
+</section>
 
-<button onclick="openWhatsApp()">WhatsApp</button>
-<button onclick="scrollToForm()">Get Quote</button>
-<button onclick="goAdmin()">Admin</button>
+<!-- Form Section -->
+<section id="quote">
+  <h2>Free Repair Quote Len</h2>
+  <form id="repair-form">
+    <input type="text" id="name" placeholder="Aapka Naam" required>
+    <input type="tel" id="phone" placeholder="WhatsApp Number" required>
+    <input type="text" id="problem" placeholder="Mobile ka masla kya hai?" required>
+    <button type="submit">Submit Karo - Hum Call Karenge</button>
+  </form>
+</section>
+
+<!-- Testimonials - Trust ke liye zaroori -->
+<section id="reviews">
+  <h2>Customer Reviews</h2>
+  <div class="review">
+    <p>"1 ghante me iPhone ki screen change kar di. Zabardast service!"</p>
+    <strong>- Ahmed, Chitral</strong>
+  </div>
+  <div class="review">
+    <p>"Battery issue tha, same day fix ho gaya. Highly recommended"</p>
+    <strong>- Fatima, Drosh</strong>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 Fast Mobile Repair Chitral</p>
+  <button onclick="goAdmin()" class="admin-btn">Admin Login</button>
+</footer>
 
 <script src="script.js"></script>
 </body>

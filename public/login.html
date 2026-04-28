@@ -1,14 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Admin Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Fast Mobile Repair</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-box {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 1.5rem;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .back-link a {
+      color: #667eea;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <h2>Admin Login</h2>
-  <form action="/login" method="POST">
-    <input type="text" name="username" placeholder="Username" required><br><br>
-    <input type="password" name="password" placeholder="Password" required><br><br>
-    <button type="submit">Login</button>
-  </form>
+  <div class="login-box">
+    <div class="logo">⚡</div>
+    <h2>Admin Login</h2>
+    <form action="/login" method="POST">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" placeholder="admin" required>
+      </div>
+      
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required>
+      </div>
+      
+      <button type="submit">Login to Dashboard</button>
+    </form>
+    
+    <div class="back-link">
+      <a href="/">← Back to Website</a>
+    </div>
+  </div>
 </body>
 </html>

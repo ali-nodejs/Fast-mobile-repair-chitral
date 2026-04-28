@@ -23,12 +23,12 @@
       <th>Phone</th>
       <th>Problem</th>
       <th>Status</th>
-      <th>Actions</th>
+      <th>Action</th>
     </tr>
   </thead>
-
-  <tbody id="list">
-    <!-- Data yahan JS se ayega -->
+  <!-- ✅ Sirf ek tbody -->
+  <tbody id="tableBody">
+    <!-- JS yahan data inject karega -->
   </tbody>
 </table>
 <div id="editModal" style="display:none;">
@@ -39,5 +39,15 @@
   <button onclick="saveEdit()">Save</button>
 </div>
 <script src="admin.js"></script>
+<div id="debug" style="background:#ffeeee; padding:10px; margin:10px; border:1px solid red; display:none;"></div>
+
+<script>
+function showError(msg) {
+  const box = document.getElementById('debug');
+  box.style.display = 'block';
+  box.innerHTML += msg + '<br>';
+}
+</script>
+</body>
 </body>
 </html>
