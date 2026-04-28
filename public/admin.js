@@ -1,3 +1,4 @@
+alert("js load hogaia")
 // 👇 showError yahin upar le aao
 /*function showError(msg) {
   const box = document.getElementById('debug');
@@ -7,6 +8,9 @@
   }
 }
 */
+function showError(msg) {
+  // Debug band hai. Production me kuch mat dikhao
+}
 let allData = [];
 let editIndex = null;
 
