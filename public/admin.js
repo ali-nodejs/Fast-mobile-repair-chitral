@@ -1,14 +1,12 @@
-alert("JS file load ho gayi");
-
 // 👇 showError yahin upar le aao
-function showError(msg) {
+/*function showError(msg) {
   const box = document.getElementById('debug');
   if (box) {
     box.style.display = 'block';
     box.innerHTML += msg + '<br>';
   }
 }
-
+*/
 let allData = [];
 let editIndex = null;
 
