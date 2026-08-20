@@ -21,13 +21,6 @@
     "status": "done"
   },
   {
-    "id": 1776355619065,
-    "name": "Ali Muhammad meherrr",
-    "phone": "03452319828",
-    "problem": "Screen ",
-    "status": "pending"
-  },
-  {
     "id": 1776446407769,
     "name": "Zafar",
     "phone": "03452319828",
@@ -36,9 +29,9 @@
   },
   {
     "id": 1776446410430,
-    "name": "Zafar khial",
+    "name": "Zafar Ahmed v",
     "phone": "03438313362",
     "problem": "Charging base issue",
-    "status": "done"
+    "status": "pending"
   }
 ]
