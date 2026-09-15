@@ -1,4 +1,4 @@
-alert("js load hogaia")
+console.log("js load hogaia")
 // 👇 showError yahin upar le aao
 /*function showError(msg) {
   const box = document.getElementById('debug');
