@@ -1,74 +1,82 @@
-document.getElementById("repair-form").addEventListener("submit", async function(e){
-    e.preventDefault();
+const express = require("express");
+const session = require("express-session");
+const path = require("path");
+const fs = require("fs");
+const app = express();
+const PORT = 3000;
 
-    const submitBtn = e.target.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerText;
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.use(session({
+    secret: "ChitralRepair@Fast$2026#VeryLongRandomSecretKey",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 24*60*60*1000 }
+}));
 
-    // 1. Button loading state
-    submitBtn.innerText = "Sending...";
-    submitBtn.disabled = true;
+const ADMIN_USER = "admin";
+const ADMIN_PASS = "191987";
+const DB_FILE = path.join(__dirname, "request.json");
 
-    const data = {
-        name: document.getElementById("name").value.trim(),
-        phone: document.getElementById("phone").value.trim(),
-        problem: document.getElementById("problem").value.trim()
-    };
+function readData(){
+  try{
+    if(!fs.existsSync(DB_FILE)) return [];
+    const raw = fs.readFileSync(DB_FILE,'utf8').trim();
+    if(!raw) return [];
+    let data = JSON.parse(raw);
+    // Normalize - purane aur naye dono format ko ek jaisa banao
+    return data.map(r => ({
+      id: r.id || Date.now(),
+      name: r.name || "",
+      phone: r.phone || "",
+      problem: r.problem || r.message || "",
+      message: r.problem || r.message || "",
+      status: r.status || "pending",
+      date: r.date || new Date().toLocaleString("en-PK",{timeZone:"Asia/Karachi"})
+    }));
+  }catch(e){ console.error(e); return []; }
+}
+function writeData(data){ 
+  try{ fs.writeFileSync(DB_FILE, JSON.stringify(data,null,2)); return true; } 
+  catch(e){ console.error("Write Error:", e); return false; } 
+}
 
-    // 2. Basic validation
-    if(!data.name || !data.phone || !data.problem) {
-        showToast("⚠️ Please fill all fields"); // <-- CHANGE 1
-        submitBtn.innerText = originalText;
-        submitBtn.disabled = false;
-        return;
-    }
+app.post("/submit-request",(req,res)=>{
+  const name = req.body.name;
+  const phone = req.body.phone;
+  const problem = req.body.problem || req.body.message;
+  if(!name || !phone || !problem) return res.status(400).json({success:false});
 
-    console.log("sending", data);
-
-    try {
-        const res = await fetch("/submit", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
-
-        if (res.ok) {
-            showToast("✅ Request Submitted! Hum 10 min me call karenge"); // <-- CHANGE 2
-            document.getElementById("repair-form").reset(); // Form khali kar do
-        } else {
-            showToast("❌ Server error. WhatsApp pe message kar den."); // <-- CHANGE 3
-        }
-    } catch (err) {
-        console.error(err);
-        showToast("❌ Network error. Apna internet check karen ya WhatsApp karen."); // <-- CHANGE 4
-    } finally {
-        // 3. Button wapis normal karo
-        submitBtn.innerText = originalText;
-        submitBtn.disabled = false;
-    }
+  let data = [];
+  try{ data = JSON.parse(fs.readFileSync(DB_FILE,'utf8')); } catch{ data=[]; }
+  data.push({ id: Date.now(), name, phone, problem, message: problem, status: "pending", date: new Date().toLocaleString("en-PK",{timeZone:"Asia/Karachi"}) });
+  
+  if(writeData(data)) res.json({success:true});
+  else res.status(500).json({success:false});
 });
 
-// YE NAYA FUNCTION SABSE NEECHE LAGA DEN
-function showToast(message){
-    let msg = document.createElement("div");
-    msg.innerText = message;
-    msg.style.cssText = "position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#111;color:white;padding:12px 20px;border-radius:8px;z-index:9999;font-weight:bold;box-shadow:0 4px 10px rgba(0,0,0,0.3)";
-    document.body.appendChild(msg);
-    setTimeout(()=>{ msg.remove(); }, 3000); // 3 sec baad gayab
-}
+// Admin API - yehi admin panel use karega
+app.get("/api/requests",(req,res)=>{
+  if(!req.session.loggedIn) return res.status(401).json({error:"login"});
+  res.json(readData());
+});
+app.post("/api/status/:id",(req,res)=>{
+  if(!req.session.loggedIn) return res.status(401).json({});
+  let data = [];
+  try{ data = JSON.parse(fs.readFileSync(DB_FILE,'utf8')); } catch{ data=[]; }
+  const item = data.find(x=> String(x.id)===String(req.params.id));
+  if(item){ item.status = req.body.status; writeData(data); }
+  res.json({success:true});
+});
 
-function openWhatsApp(){
-    // Yahan apna number + message customize karo
-    const msg = encodeURIComponent("Salam! Mujhe mobile repair karwana hai. Mera masla: ");
-    window.open(`https://wa.me/923438313362?text=${msg}`, "_blank")
-}
+function requireLogin(req,res,next){ if(req.session.loggedIn) next(); else res.redirect("/login"); }
+app.post("/login",(req,res)=>{
+  if(req.body.username==="admin" && req.body.password==="191987"){ req.session.loggedIn=true; res.json({success:true}); }
+  else res.status(401).json({success:false});
+});
+app.get("/login",(req,res)=> res.sendFile(path.join(__dirname,"public/login.html")));
+app.get("/admin",requireLogin,(req,res)=> res.sendFile(path.join(__dirname,"public/admin.html")));
+app.get("/logout",(req,res)=> req.session.destroy(()=> res.redirect("/login")));
 
-function scrollToForm(){
-    // Ab section ID pe scroll hoga, zyada smooth
-    document.getElementById("quote").scrollIntoView({
-        behavior: "smooth"
-    });
-}
-
-function goAdmin(){
-    window.location.href = "/admin"; // .html hata do agar route /admin hai
-}
+app.listen(PORT,()=> console.log("Server running on http://localhost:"+PORT));
