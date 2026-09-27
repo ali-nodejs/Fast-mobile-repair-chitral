@@ -113,12 +113,29 @@ window.toggleStatus = async function(id) {
   loadData();
 };
 
-window.deleteRequest = async function(id) {
-  if (confirm("Are you sure?")) {
-    await fetch(`/delete/${id}`, { method: "POST" });
-    loadData();
-  }
+let deleteRequestId = null;
+
+window.deleteRequest = function(id) {
+  deleteRequestId = id;
+  document.getElementById("deleteModal").style.display = "flex";
 };
+
+document.getElementById("cancelDelete").addEventListener("click", function() {
+  deleteRequestId = null;
+  document.getElementById("deleteModal").style.display = "none";
+});
+
+document.getElementById("confirmDelete").addEventListener("click", async function() {
+  if (!deleteRequestId) return;
+
+  const id = deleteRequestId;
+
+  deleteRequestId = null;
+  document.getElementById("deleteModal").style.display = "none";
+
+  await fetch(`/delete/${id}`, { method: "POST" });
+  loadData();
+});
 
 // 👇 Ye line sabse zaroori thi, ye missing thi
 loadData();

@@ -43,11 +43,11 @@ if (cleanPhone.length !== 11 || !cleanPhone.startsWith("03")) {
     });
 
     const result = await response.json();
-
-    if (result.success) {
-      alert("Request Submitted Successfully! ✅");
-      form.reset();
-    } else {
+if (result.success) {
+  form.querySelector(".form-note").textContent = "✅ Request submitted successfully!";
+  form.reset();
+}
+     else {
       alert("Request submit nahi ho saki. Please dobara try karein.");
     }
 
