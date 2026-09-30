@@ -26,6 +26,9 @@ app.use(session({
 app.get("/admin.html", requireLogin, (req, res) => {
   res.sendFile(path.join(__dirname, "public", "admin.html"));
 });
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 app.use(express.static("public"));
 
 // ===== ADMIN LOGIN =====
