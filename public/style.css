@@ -733,6 +733,7 @@ td button:hover {
 
   .hero-buttons {
     flex-direction: column;
+    align-items: center;
   }
 
   .cta-btn,
